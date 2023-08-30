@@ -16,6 +16,12 @@ export function removeQuote(id) {
   }
 }
 
+export function upvoteQuote(id) {
+  return {
+    type: "quote/upvote",
+    payload: id
+  }
+}
 
 // Reducer
 const initialState = [];
@@ -28,6 +34,17 @@ export default function quotesReducer(state = initialState, action) {
     }
     case "quote/remove": {
       return state.filter((quote) => quote.id !== payload)
+    }
+    case "quote/upvote": {
+      const updatedQuote = state.find((quote) => quote.id === payload)
+      updatedQuote.votes += 1
+      return state.filter((quote) => {
+        if (quote.id !== updatedQuote.id) {
+          return quote
+        } else {
+          return updatedQuote
+        }
+      })       
     }
     default:
       return state;

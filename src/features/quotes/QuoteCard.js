@@ -1,14 +1,18 @@
 import React from "react";
 import { useDispatch } from 'react-redux'
-import { removeQuote } from './quotesSlice'
+import { removeQuote, upvoteQuote } from './quotesSlice'
 
 function QuoteCard({quote}) {
 
   const {content, author, votes, id} = quote
   const dispatch = useDispatch()
 
-  function handleRemoveQuote(id){
+  function handleRemoveQuote() {
     dispatch(removeQuote(id))
+  }
+
+  function handleUpvoteQuote() {
+    dispatch(upvoteQuote(id))
   }
 
   return (
