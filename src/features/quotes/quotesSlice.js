@@ -23,6 +23,13 @@ export function upvoteQuote(id) {
   }
 }
 
+export function downvoteQuote(id) {
+  return {
+    type: "quote/downvote",
+    payload: id
+  }
+}
+
 // Reducer
 const initialState = [];
 
@@ -35,18 +42,30 @@ export default function quotesReducer(state = initialState, action) {
     case "quote/remove": {
       return state.filter((quote) => quote.id !== payload)
     }
-    case "quote/upvote": {
-      state.map((quote) => {
+    case "quote/upvote":
+      return state.map((quote) => {
         if (quote.id === payload) {
           return {
             ...quote,
-            votes: quote.votes + 1
-          }} else {
-            return quote
-          }
+            votes: quote.votes + 1,
+          };
+        } else {
+          return quote;
         }
-      )
+      });
+    case "quote/downvote": {
+      return state.map((quote) => {
+        if (quote.id === payload && quote.votes > 0) {
+          return {
+            ...quote,
+            votes: quote.votes - 1,
+          };
+        } else {
+          return quote;
+        }
+      });
     }
+      
     default:
       return state;
   }
