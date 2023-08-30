@@ -4,12 +4,15 @@ import { addQuote } from "./quotesSlice";
 
 function QuoteForm() {
   const [formData, setFormData] = useState({
-    // set up a controlled form with internal state
-    // look at the form to determine what keys need to go here
+    content,
+    author
   });
 
+  const [content, setContent] = useState("")
+  const [author, setAuthor] = useState("")
+  
   function handleChange(event) {
-    // Handle Updating Component State
+    
   }
 
   function handleSubmit(event) {
