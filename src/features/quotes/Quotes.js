@@ -1,11 +1,10 @@
 import React from "react";
 import QuoteCard from "./QuoteCard";
-import quotesReducer from "./quotesSlice";
-
+import { useSelector } from 'react-redux'
 
 function Quotes() {
 
-  const quotes = quotesReducer.quotes
+  const quotes = useSelector((state) => state.quotes)
   const quoteComps = quotes.map((quote) => <QuoteCard key={quote.id} quote={quote}/>)
   
   return (

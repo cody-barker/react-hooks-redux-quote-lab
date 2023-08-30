@@ -9,6 +9,14 @@ export function addQuote(quote) {
   }
 }
 
+export function removeQuote(id) {
+  return {
+    type: "quote/remove",
+    payload: id
+  }
+}
+
+
 // Reducer
 const initialState = [];
 
@@ -17,6 +25,9 @@ export default function quotesReducer(state = initialState, action) {
   switch (type) {
     case "quote/add": {
       return [...state, payload]
+    }
+    case "quote/remove": {
+      return state.filter((quote) => quote.id !== payload)
     }
     default:
       return state;

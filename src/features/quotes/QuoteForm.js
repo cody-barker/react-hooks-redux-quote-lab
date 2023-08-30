@@ -25,6 +25,7 @@ function QuoteForm() {
     // Pass quote obje{ct to action creator
     dispatch(addQuote({
       ...formData,
+      votes: 0,
       id: uuid()
     }))
     // Update component state to return to default state
