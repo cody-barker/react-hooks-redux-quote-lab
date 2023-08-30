@@ -4,18 +4,18 @@ import { addQuote } from "./quotesSlice";
 
 function QuoteForm() {
   const [formData, setFormData] = useState({
-    content,
-    author
+    content: "",
+    author: ""
   });
-
-  const [content, setContent] = useState("")
-  const [author, setAuthor] = useState("")
   
-  function handleChange(event) {
-    
+  function handleChange(e) {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    })
   }
 
-  function handleSubmit(event) {
+  function handleSubmit(e) {
     // Handle Form Submit event default
     // Create quote object from state
     // Pass quote object to action creator
@@ -37,6 +37,7 @@ function QuoteForm() {
                     <textarea
                       className="form-control"
                       id="content"
+                      onChange={handleChange}
                       value={formData.content}
                     />
                   </div>
@@ -50,6 +51,7 @@ function QuoteForm() {
                       className="form-control"
                       type="text"
                       id="author"
+                      onChange={handleChange}
                       value={formData.author}
                     />
                   </div>
