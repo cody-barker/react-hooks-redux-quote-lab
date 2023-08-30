@@ -41,11 +41,11 @@ export default function quotesReducer(state = initialState, action) {
           return {
             ...quote,
             votes: quote.votes + 1
-          } else {
+          }} else {
             return quote
           }
         }
-      })   
+      )
     }
     default:
       return state;
